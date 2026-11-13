@@ -179,6 +179,40 @@ p{color:var(--muted);max-width:34em}
 .k{font:700 1rem 'Cormorant Garamond',Georgia,serif;background:rgba(255,255,255,.1);border:1px solid rgba(201,162,74,.25);color:#f3dfa5}
 .k.g{background:#3f8f63;color:#fff}.k.y{background:#b8923a;color:#fff}.k.x{background:#1c1730;color:#6f6590}
 #msg{font:italic 500 1.2rem 'Cormorant Garamond',Georgia,serif;color:#ffd98a;letter-spacing:.04em}
+/* wordle mobile fit */
+#game{justify-content:flex-start;min-height:100dvh;padding-top:max(18px,env(safe-area-inset-top));padding-bottom:max(18px,env(safe-area-inset-bottom))}
+#kb{width:min(100%,500px);gap:7px;margin-top:6px}
+.kr{width:100%;gap:4px}
+.kr:nth-child(2){padding:0 5%}
+.k{flex:1 1 0;min-width:0;height:50px;padding:0;font-size:1rem;touch-action:manipulation;-webkit-tap-highlight-color:transparent}
+.k.wide{flex:1.7 1 0;font-size:.78rem;letter-spacing:.05em}
+@media (max-height:780px){
+ #game h1{font-size:2rem}
+ #game h1::after{margin-top:8px}
+ #game p{font-size:1rem;margin:.3em 0}
+ #grid{gap:4px;margin:8px 0;width:min(86vw,380px)}
+ .row{gap:4px}
+ .k{height:44px}
+}
+/* envelopes page: mobile fit */
+#open{justify-content:flex-start;min-height:100dvh;overflow-x:hidden;padding:max(26px,env(safe-area-inset-top)) 14px max(36px,env(safe-area-inset-bottom))}
+@media (max-width:560px){
+ #open h1,#open h2{font-size:2.2rem}
+ #open p{font-size:1.05rem;margin:.3em 0}
+ .envs{grid-template-columns:repeat(2,1fr);gap:14px;margin:18px 0 8px}
+ .env{min-height:178px}
+ .env .seal{width:30px;height:30px;font-size:.85rem}
+ .env .lbl{top:58%;padding:0 8px}
+ .env .lbl small{font-size:.52rem;letter-spacing:.22em}
+ .env .lbl b{font-size:.98rem;line-height:1.12}
+ #modal{padding:12px}
+ .mbox{max-height:90dvh}
+ .mscroll{padding:30px 20px 24px}
+ .mbox h2{font-size:1.4rem}
+ .ar{font-size:1.5rem;line-height:2}
+ .mv{font-size:1.1rem}
+ .mn p{font-size:1.15rem}
+}
 </style></head><body>
 <video id="bgv" src="fireworks.mp4" preload="none" muted loop playsinline style="position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;display:none;opacity:0;transition:opacity 2s"></video>
 <canvas id="fw"></canvas>
@@ -351,7 +385,7 @@ const grid=$('#grid'),kb=$('#kb'),msg=$('#msg');
 const W5=WORD.toLowerCase(),L=W5.length,TRIES=6;
 let cur='',row=0,done=false;
 for(let r=0;r<TRIES;r++){const d=document.createElement('div');d.className='row';d.innerHTML='<div class="c"></div>'.repeat(L);grid.appendChild(d)}
-['qwertyuiop','asdfghjkl','⏎zxcvbnm⌫'].forEach(r=>{const d=document.createElement('div');d.className='kr';[...r].forEach(ch=>{const b=document.createElement('button');b.className='k';b.textContent=ch;b.dataset.k=ch;b.onclick=()=>key(ch);d.appendChild(b)});kb.appendChild(d)});
+['qwertyuiop','asdfghjkl','⏎zxcvbnm⌫'].forEach(r=>{const d=document.createElement('div');d.className='kr';[...r].forEach(ch=>{const b=document.createElement('button');b.className='k'+(ch==='⏎'||ch==='⌫'?' wide':'');b.textContent=ch==='⏎'?'Enter':ch;b.dataset.k=ch;b.onclick=()=>key(ch);d.appendChild(b)});kb.appendChild(d)});
 addEventListener('keydown',e=>{if(!$('#game').classList.contains('on'))return;if(e.key==='Enter')key('⏎');else if(e.key==='Backspace')key('⌫');else if(/^[a-z]$/i.test(e.key))key(e.key.toLowerCase())});
 function paint(){const cs=grid.children[row].children;for(let i=0;i<L;i++){cs[i].textContent=cur[i]||'';cs[i].classList.toggle('f',!!cur[i])}}
 function key(k){if(done)return;msg.textContent='';
