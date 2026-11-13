@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Happy Birthday 🎂</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Amiri&family=Caveat:wght@600&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=Great+Vibes&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0618;--ink:#fff;--muted:#c9b8ee;--accent:#ff7ac6;--card:#1b1233;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0b0618;--ink:#fff;--muted:#c9b8ee;--card:#1b1233}}
+:root[data-theme="dark"]{--bg:#0b0618}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:var(--bg);color:var(--ink);font-family:Georgia,'Times New Roman',serif}
+#fw{position:fixed;inset:0;width:100%;height:100%;z-index:0}
+section{position:relative;z-index:1;display:none;min-height:100vh;padding:24px 16px;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+section.on{display:flex;animation:fade 1s}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+h1{font-size:clamp(2rem,7vw,4rem);margin:.2em 0;background:linear-gradient(90deg,#ffd36e,#ff7ac6,#8f7aff);-webkit-background-clip:text;background-clip:text;color:transparent}
+p{color:var(--muted);max-width:34em}
+.cd{display:flex;gap:12px;margin:24px 0;flex-wrap:wrap;justify-content:center}
+.cd div{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:14px 10px;min-width:72px}
+.cd b{display:block;font-size:2rem;font-variant-numeric:tabular-nums}.cd span{font-size:.7rem;text-transform:uppercase;letter-spacing:.15em;color:var(--muted)}
+/* cake */
+.scene{perspective:900px;margin:30px 0 10px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.cake{position:relative;width:260px;height:300px;transform-style:preserve-3d;transform:rotateX(-8deg) rotateY(var(--ry,0deg));transition:transform .2s}
+.plate{position:absolute;bottom:0;left:-20px;width:300px;height:56px;border-radius:50%;background:radial-gradient(#fff,#cfc6e6 70%,#8b80b0);box-shadow:0 20px 30px rgba(0,0,0,.6)}
+.tier{position:absolute;left:50%;transform:translateX(-50%);border-radius:14px 14px 50% 50%/14px 14px 22px 22px;box-shadow:inset -22px 0 28px rgba(0,0,0,.28),inset 14px 0 18px rgba(255,255,255,.2)}
+.tier::before{content:"";position:absolute;left:0;right:0;top:-14px;height:28px;border-radius:50%;background:inherit;filter:brightness(1.25)}
+.t1{bottom:20px;width:250px;height:100px;background:linear-gradient(#ff9ccf,#e8509a)}
+.t2{bottom:112px;width:180px;height:86px;background:linear-gradient(#fff2f8,#f3b6d3)}
+.t3{bottom:196px;width:116px;height:70px;background:linear-gradient(#ffe29a,#f0a93a)}
+.drip{position:absolute;top:8px;left:0;right:0;height:26px;background:radial-gradient(circle at 10px 0,#fff 10px,transparent 11px) 0 0/28px 26px repeat-x;opacity:.9}
+.berry{position:absolute;top:-22px;width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 30% 30%,#ff8a8a,#c0102f);box-shadow:0 3px 4px rgba(0,0,0,.4)}
+.candle{position:absolute;bottom:262px;width:9px;height:42px;border-radius:3px;background:repeating-linear-gradient(45deg,#fff 0 6px,#6ec3ff 6px 12px)}
+.flame{position:absolute;top:-24px;left:-3px;width:15px;height:24px;border-radius:50% 50% 50% 50%/65% 65% 35% 35%;background:radial-gradient(#fff,#ffd34d 45%,#ff7a1a);box-shadow:0 0 20px 8px rgba(255,170,60,.6);animation:fl .25s infinite alternate;transform-origin:bottom}
+@keyframes fl{to{transform:scale(.9,1.12) rotate(4deg)}}
+.out .flame{opacity:0;transition:opacity .6s}
+.btn{background:linear-gradient(90deg,#ff7ac6,#8f7aff);border:0;color:#fff;font:inherit;font-size:1rem;padding:12px 26px;border-radius:99px;cursor:pointer;margin-top:18px}
+.hint{animation:pulse 1.6s infinite}@keyframes pulse{50%{opacity:.4}}
+/* wordle */
+#grid{display:grid;gap:6px;margin:14px 0;width:min(92vw,440px)}
+.row{display:grid;grid-template-columns:repeat(8,1fr);gap:6px}
+.c{aspect-ratio:1;border:2px solid rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font:700 clamp(1rem,5vw,1.5rem) sans-serif;text-transform:uppercase;border-radius:6px}
+.c.f{border-color:#fff}.c.g{background:#3a9d5d;border-color:#3a9d5d}.c.y{background:#c9a227;border-color:#c9a227}.c.x{background:#3b3550;border-color:#3b3550}
+#kb{display:flex;flex-direction:column;gap:6px;align-items:center}
+.kr{display:flex;gap:5px}
+.k{font:600 .9rem sans-serif;min-width:30px;height:46px;padding:0 6px;border:0;border-radius:6px;background:#4a4166;color:#fff;cursor:pointer;text-transform:uppercase}
+.k.g{background:#3a9d5d}.k.y{background:#c9a227}.k.x{background:#241d36}
+#msg{min-height:1.5em;color:#ffd36e}
+.shake{animation:sh .4s}@keyframes sh{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+/* bake game */
+#stage{display:flex;flex-direction:column;align-items:center;gap:14px;width:100%;max-width:520px}
+.ing,.pal{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.ing button,.pal button{font:inherit;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:var(--ink);border-radius:14px;padding:10px 12px;cursor:pointer;font-size:.8rem}
+.ing button span,.pal button span{display:block;font-size:2rem}
+.ing button.used{opacity:.3;pointer-events:none}
+.pal button.sel{border-color:#ffd36e;background:rgba(255,211,110,.2)}
+.bwrap{position:relative}
+.bowl{position:relative;width:240px;height:130px;border-radius:0 0 120px 120px;background:linear-gradient(#e9e4f5,#a69cc4);overflow:hidden;box-shadow:inset 0 -10px 20px rgba(0,0,0,.3);touch-action:none}
+.batter{position:absolute;left:0;right:0;bottom:0;height:var(--lv,0%);background:var(--bt,#f6e3a1);transition:height .4s}
+.drop{position:absolute;left:50%;top:-40px;font-size:2rem;animation:dr .7s forwards;pointer-events:none}
+@keyframes dr{from{transform:translate(-50%,0)}to{transform:translate(-50%,100px);opacity:0}}
+.spoon{position:absolute;left:50%;top:45%;transform:translate(-50%,-50%);font-size:2.4rem;pointer-events:none}
+.bar{position:relative;width:min(90vw,320px);height:18px;border-radius:99px;background:rgba(255,255,255,.12);overflow:hidden}
+.bar i{position:absolute;left:0;top:0;bottom:0;width:0;background:linear-gradient(90deg,#ff7ac6,#8f7aff)}
+.zone{position:absolute;left:50%;width:30%;top:0;bottom:0;background:rgba(58,157,93,.7)}
+.bar .mk{width:4px;background:#fff;left:0}
+.bcake{position:relative;width:280px;height:200px;margin-top:10px;cursor:crosshair}
+.bplate{position:absolute;bottom:0;left:0;width:280px;height:40px;border-radius:50%;background:radial-gradient(#fff,#cfc6e6 70%,#8b80b0);box-shadow:0 14px 24px rgba(0,0,0,.5)}
+.bl{position:absolute;left:20px;width:240px;height:64px;border-radius:12px 12px 20px 20px;background:var(--sp,#f1c27a);box-shadow:inset -18px 0 24px rgba(0,0,0,.22),inset 10px 0 14px rgba(255,255,255,.18)}
+.bl.a{bottom:20px}.bl.b{bottom:84px}
+.frost{position:absolute;left:14px;width:252px;background:var(--fr,#ff9ccf);box-shadow:inset -14px 0 18px rgba(0,0,0,.18),0 3px 6px rgba(0,0,0,.3)}
+.frost.m{height:16px;bottom:78px;border-radius:99px}
+.frost.t{height:40px;bottom:140px;border-radius:50%}
+.tp{position:absolute;transform:translate(-50%,-50%);font-size:22px;pointer-events:none}
+.bc{position:absolute;width:8px;height:34px;transform:translateX(-50%);border-radius:3px;background:repeating-linear-gradient(45deg,#fff 0 6px,#6ec3ff 6px 12px);pointer-events:none}
+/* name on cake */
+.wr{position:absolute;left:14px;width:252px;bottom:140px;height:40px;display:flex;align-items:center;justify-content:center;font:600 26px/1 'Caveat','Segoe Script','Bradley Hand',cursive;color:var(--wc,#7a1f4d);transform:rotate(-3deg);white-space:nowrap;overflow:hidden;pointer-events:none;text-shadow:0 1px 0 rgba(255,255,255,.25)}
+.nameBox{font:inherit;font-size:1rem;padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:var(--ink);width:min(90vw,260px);text-align:center}
+/* open when: elegant */
+#open{background:radial-gradient(ellipse at top,rgba(40,20,70,.82),rgba(8,4,20,.93));backdrop-filter:blur(3px)}
+#open h1,#open h2{font:italic 500 clamp(2.4rem,7vw,3.8rem)/1.1 'Cormorant Garamond',Georgia,serif;background:linear-gradient(#f9ebbd,#c79a3c);-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:.02em}
+#open p{font:italic 500 1.2rem 'Cormorant Garamond',Georgia,serif;letter-spacing:.04em}
+#open .btn,#more{background:transparent;border:1px solid #c9a24a;color:#f3dfa5;font:600 .8rem 'Cormorant Garamond',Georgia,serif;letter-spacing:.2em;text-transform:uppercase;padding:12px 28px}
+#open .btn:hover,#more:hover{background:rgba(201,162,74,.15)}
+.envs{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:28px;width:100%;max-width:780px;margin:28px 0}
+.env{position:relative;perspective:700px;aspect-ratio:4/3;border:0;padding:0;cursor:pointer;font:inherit;background:linear-gradient(145deg,#f7eedc,#e4d3b4);border-radius:6px;box-shadow:0 14px 28px rgba(0,0,0,.5),inset 0 0 0 1px rgba(120,90,40,.3);transition:transform .3s,box-shadow .3s}
+.env:hover{transform:translateY(-6px);box-shadow:0 24px 38px rgba(0,0,0,.55),inset 0 0 0 1px rgba(120,90,40,.3)}
+.env .flap{position:absolute;left:0;right:0;top:0;height:52%;background:linear-gradient(#e6d3ad,#d6bd8f);clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top;transition:transform .6s ease;z-index:3}
+.env .pk{position:absolute;inset:0;background:linear-gradient(145deg,#fbf3e2,#ecdcbe);clip-path:polygon(0 0,50% 52%,100% 0,100% 100%,0 100%);border-radius:6px;z-index:2}
+.env .lbl{position:absolute;left:0;right:0;bottom:8%;padding:0 12px;z-index:4;text-align:center;color:#3b2a1e}
+.env .lbl small{display:block;font:600 .68rem 'Cormorant Garamond',Georgia,serif;letter-spacing:.28em;text-transform:uppercase;color:#8a6a2f}
+.env .lbl b{display:block;font:600 1.3rem/1.05 'Caveat','Segoe Script',cursive;margin-top:2px}
+.env .seal{position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);z-index:5;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;font-size:1.1rem;background:radial-gradient(circle at 35% 30%,#c0394f,#7a1228 70%);box-shadow:0 3px 7px rgba(0,0,0,.45),inset 0 0 0 2px rgba(255,255,255,.14);transition:opacity .3s}
+.env:nth-child(3n+2) .seal{background:radial-gradient(circle at 35% 30%,#4a6aa8,#17294f 70%)}
+.env:nth-child(3n) .seal{background:radial-gradient(circle at 35% 30%,#4f8a6a,#173d2b 70%)}
+.env.op .flap{transform:rotateX(180deg)}
+.env.op .seal{opacity:0}
+#modal{position:fixed;inset:0;z-index:20;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(5,2,14,.8);backdrop-filter:blur(6px)}
+#modal.show{display:flex;animation:fade .4s}
+.mbox{position:relative;width:100%;max-width:480px;max-height:92vh;overflow:auto;background:linear-gradient(160deg,#fcf7ea,#f1e5c9);color:#3b2a1e;border-radius:10px;padding:36px 30px 28px;text-align:center;box-shadow:0 30px 60px rgba(0,0,0,.6);animation:rise .7s cubic-bezier(.2,.8,.2,1)}
+.mbox::before{content:"";position:absolute;inset:10px;border:1px solid rgba(176,138,58,.55);border-radius:6px;pointer-events:none}
+@keyframes rise{from{opacity:0;transform:translateY(60px) scale(.94)}}
+.me{font-size:1.8rem}
+.mbox h2{font:italic 600 1.7rem/1.2 'Cormorant Garamond',Georgia,serif;margin:.2em 0 .6em;color:#5a3d1a}
+.mbox h2::after{content:"❖";display:block;font-size:.8rem;font-style:normal;color:#b08a3a;margin-top:8px}
+.ar{font:400 1.9rem/2.1 'Amiri','Scheherazade New',serif;direction:rtl;color:#1f4a3a;margin:6px 0}
+.mv{font:italic 500 1.25rem/1.5 'Cormorant Garamond',Georgia,serif;color:#3b2a1e;margin:6px auto;max-width:none}
+.mr{font:600 .72rem 'Cormorant Garamond',Georgia,serif;letter-spacing:.22em;text-transform:uppercase;color:#8a6a2f;margin:4px auto 8px;max-width:none}
+.quran-link{font:italic .95rem 'Cormorant Garamond',Georgia,serif;color:#8a6a2f;text-underline-offset:3px}
+.mn{margin-top:22px;padding-top:18px;border-top:1px solid rgba(176,138,58,.45)}
+.mn strong{display:block;font:600 .72rem 'Cormorant Garamond',Georgia,serif;letter-spacing:.22em;text-transform:uppercase;color:#8a6a2f;margin-bottom:8px}
+.mn p{font:600 1.45rem/1.35 'Caveat','Segoe Script',cursive;color:#3b2a1e;margin:0 auto;max-width:none}
+.close-modal{margin-top:22px;background:transparent;border:1px solid #b08a3a;color:#6b4a1a;font:600 .75rem 'Cormorant Garamond',Georgia,serif;letter-spacing:.2em;text-transform:uppercase;padding:10px 26px;border-radius:99px;cursor:pointer}
+.close-modal:hover{background:#b08a3a;color:#fff}
+.e4{font:italic 500 1.4rem/1.6 'Cormorant Garamond',Georgia,serif;color:#c9b8ee;margin:26px auto 0;max-width:34em}
+.e4t{background:linear-gradient(#f9ebbd,#c79a3c);-webkit-background-clip:text;background-clip:text;color:transparent}
+.e5{display:block;font:italic 500 1rem 'Cormorant Garamond',Georgia,serif;color:#8a6a2f;margin-top:10px}
+/* layout fixes */
+.mbox{overflow:hidden;padding:0;display:flex;max-height:88vh}
+.mbox::before{z-index:2}
+.mscroll{width:100%;overflow-y:auto;padding:40px 34px 30px;scrollbar-width:thin;scrollbar-color:#c9a24a transparent}
+.mscroll>*{max-width:100%}
+.mn p{font-size:1.3rem;line-height:1.5;text-wrap:balance;overflow-wrap:anywhere}
+.mv,.ar,.quran-link{overflow-wrap:anywhere}
+.quran-link{display:inline-block;margin-top:2px}
+
+/* envelopes */
+.env{aspect-ratio:auto;min-height:220px}
+.env .seal{width:36px;height:36px;font-size:1rem}
+.env .lbl{top:64%;bottom:5%;display:flex;flex-direction:column;justify-content:center;padding:0 14px}
+.env .lbl small{font-size:.6rem;letter-spacing:.3em}
+.env .lbl b{font:italic 600 1.1rem/1.15 'Cormorant Garamond',Georgia,serif;margin-top:4px;text-wrap:balance}
+.envs{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+/* happy birthday: elegant */
+#hb::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at center,rgba(8,4,20,.55),rgba(8,4,20,.88))}
+#dust{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:-1}
+#dust i{position:absolute;bottom:-10px;border-radius:50%;background:#ffd98a;box-shadow:0 0 8px 2px rgba(255,200,100,.55);opacity:0;animation:dust linear infinite}
+@keyframes dust{0%{transform:translateY(0);opacity:0}15%{opacity:.8}100%{transform:translateY(-105vh);opacity:0}}
+.hb-line{width:0;height:1px;background:linear-gradient(90deg,transparent,#d9b45a,transparent);animation:ln 1.6s ease forwards .2s;margin-bottom:22px}
+@keyframes ln{to{width:min(320px,60vw)}}
+.hb-sub{font:600 .8rem 'Cormorant Garamond',Georgia,serif;letter-spacing:.5em;text-transform:uppercase;color:#d9b45a;opacity:0;animation:fin 1.4s ease forwards .6s}
+.hb-t{background:none;-webkit-background-clip:initial;background-clip:initial;color:inherit;font:italic 500 clamp(2.8rem,11vw,6.2rem)/1.05 'Cormorant Garamond',Georgia,serif;margin:.25em 0 .05em}
+.hb-t .w{display:inline-block;white-space:nowrap;margin:0 .12em}
+.hb-t .w span{display:inline-block;background:linear-gradient(#fff3c9,#d4a23f);-webkit-background-clip:text;background-clip:text;color:transparent;opacity:0;animation:lt 1.4s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes lt{from{opacity:0;filter:blur(14px);transform:translateY(22px)}to{opacity:1;filter:blur(0);transform:none}}
+.hb-name{font:400 clamp(3.4rem,14vw,7.5rem)/1.1 'Great Vibes','Segoe Script',cursive;color:#ffe3a1;text-shadow:0 0 28px rgba(255,200,110,.55),0 0 60px rgba(255,160,80,.25);opacity:0;animation:fin 2s ease forwards 3.2s}
+.hb-p{font:italic 500 1.3rem 'Cormorant Garamond',Georgia,serif;letter-spacing:.06em;color:#e8dcc4;margin:.8em 0 0;opacity:0;animation:fin 1.6s ease forwards 4.6s}
+.hb-btn{margin-top:34px;background:transparent;border:1px solid #c9a24a;color:#f3dfa5;font:600 .8rem 'Cormorant Garamond',Georgia,serif;letter-spacing:.28em;text-transform:uppercase;padding:14px 34px;border-radius:99px;cursor:pointer;opacity:0;animation:fin 1.4s ease forwards 5.6s;transition:background .3s,box-shadow .3s}
+.hb-btn:hover{background:rgba(201,162,74,.16);box-shadow:0 0 24px rgba(201,162,74,.35)}
+@keyframes fin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+/* elegant theme: bake + wordle */
+#bake::before,#game::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at center,rgba(8,4,20,.6),rgba(8,4,20,.9))}
+#bake h1,#game h1{font:italic 500 clamp(2.2rem,7vw,3.6rem)/1.1 'Cormorant Garamond',Georgia,serif;letter-spacing:.02em;background:linear-gradient(#fff3c9,#d4a23f);-webkit-background-clip:text;background-clip:text;color:transparent;margin:.1em 0 .15em}
+#bake h1::after,#game h1::after{content:"";display:block;width:90px;height:1px;margin:14px auto 0;background:linear-gradient(90deg,transparent,#d9b45a,transparent)}
+#bake p,#game p{font:italic 500 1.2rem/1.5 'Cormorant Garamond',Georgia,serif;letter-spacing:.04em;color:#e8dcc4}
+
+/* buttons */
+#bake .btn{background:transparent;border:1px solid #c9a24a;color:#f3dfa5;font:600 .8rem 'Cormorant Garamond',Georgia,serif;letter-spacing:.26em;text-transform:uppercase;padding:13px 30px;border-radius:99px;transition:background .3s,box-shadow .3s}
+#bake .btn:hover{background:rgba(201,162,74,.16);box-shadow:0 0 22px rgba(201,162,74,.35)}
+
+/* ingredient + topping + frosting choices */
+.ing button,.pal button{background:rgba(255,255,255,.05);border:1px solid rgba(201,162,74,.4);color:#f3dfa5;font:600 .85rem 'Cormorant Garamond',Georgia,serif;letter-spacing:.08em;border-radius:12px;transition:transform .2s,background .2s}
+.ing button:hover,.pal button:hover{transform:translateY(-3px);background:rgba(201,162,74,.12)}
+.pal button.sel{border-color:#ffd98a;background:rgba(255,217,138,.18);box-shadow:0 0 16px rgba(255,200,100,.25)}
+.nameBox{font:italic 500 1.3rem 'Cormorant Garamond',Georgia,serif;border:1px solid rgba(201,162,74,.5);background:rgba(255,255,255,.05);color:#fff3c9}
+.nameBox::placeholder{color:#a897c9}
+.bar{height:10px;background:rgba(255,255,255,.1);border:1px solid rgba(201,162,74,.3)}
+.bar i{background:linear-gradient(90deg,#d9b45a,#fff3c9)}
+.zone{background:rgba(217,180,90,.55)}
+.bar .mk{background:#fff}
+#bm{color:#ffd98a}
+
+/* wordle */
+.c{font:700 clamp(1.1rem,5.2vw,1.7rem) 'Cormorant Garamond',Georgia,serif;border:1px solid rgba(201,162,74,.4);background:rgba(255,255,255,.04)}
+.c.f{border-color:#ffd98a}
+.c.g{background:#3f8f63;border-color:#3f8f63}
+.c.y{background:#b8923a;border-color:#b8923a}
+.c.x{background:#2b2540;border-color:#2b2540;color:#9a8fb8}
+.k{font:700 1rem 'Cormorant Garamond',Georgia,serif;background:rgba(255,255,255,.1);border:1px solid rgba(201,162,74,.25);color:#f3dfa5}
+.k.g{background:#3f8f63;color:#fff}.k.y{background:#b8923a;color:#fff}.k.x{background:#1c1730;color:#6f6590}
+#msg{font:italic 500 1.2rem 'Cormorant Garamond',Georgia,serif;color:#ffd98a;letter-spacing:.04em}
+</style></head><body>
+<video id="bgv" src="fireworks.mp4" preload="none" muted loop playsinline style="position:fixed;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;display:none;opacity:0;transition:opacity 2s"></video>
+<canvas id="fw"></canvas>
+
+<section id="lock">
+  <p>A little something is waiting for you…</p>
+  <h1 id="lt">Not yet, <span class="nm"></span>
+</h1>
+  <div class="cd" id="cd"></div>
+  <p>Come back at midnight on 23rd November ✨</p>
+</section>
+
+<section id="hb">
+  <div id="dust"></div>
+  <div class="hb-line"></div>
+  <div class="hb-sub">23 · November · 2026</div>
+  <h1 class="hb-t" id="hbt"></h1>
+  <div class="hb-name nm"></div>
+  <p class="hb-p">Blessed to have a friend like you.</p>
+  <button class="hb-btn" id="lets">Let's bake your cake</button>
+</section>
+
+<section id="bake">
+  <h1 id="bh">Let's bake your cake</h1>
+  <p id="bp"></p>
+  <div id="stage"></div>
+</section>
+
+<section id="game">
+  <h1>Crack the passcode</h1>
+  <p>Guess the secret 8-letter word to unlock your surprise. 🟩 right spot · 🟨 wrong spot · ⬛ not in the word</p>
+  <div id="grid"></div><div id="msg"></div><div id="kb"></div>
+</section>
+
+<section id="open" class="screen">
+  <div class="wrap">
+    <p class="eyebrow">A little gift for your heart, A little light for you, Nida</p>
+    <h2>Open when you need it 🤍</h2>
+    <p class="intro">
+      Whatever you're feeling, there's a reminder here for you.
+      Choose an envelope, take a breath, and read it slowly.
+    </p>
+
+    <div id="envs" class="envs"></div>
+
+    <p class="end-note">
+      And Nida, no matter what life brings, never forget how
+      special you are. Keep your heart soft, your intentions pure,
+      and your dreams big. Allah knows your journey.You are more capable than you sometimes realise. You have a kind heart, a sharp mind, big dreams and so much strength within you 🤍
+    </p>
+    <p class="e4"><span class="e4t">Happy birthday, <span class="nm"></span>.</span><br>I'm always rooting for you. ♡</p>
+  </div>
+</section>
+
+<div id="modal">
+  <div class="mbox" id="mbox"></div>
+</div>
+
+<script>
+// ====== EDIT THESE ======
+const NAME="Nida";                       // her name
+const WORD="patootie";                          // secret 5-letter word
+const BIRTHDAY=new Date(2026,10,23,0,0,0);   // 23 Nov 2026, local midnight
+// ========================
+document.querySelectorAll('.nm').forEach(e=>e.textContent=NAME);
+const $=s=>document.querySelector(s);
+let hk=0;
+$('#hbt').innerHTML=['Happy','Birthday'].map(w=>`<span class="w">${[...w].map(c=>`<span style="animation-delay:${1.3+(hk++)*.07}s">${c}</span>`).join('')}</span>`).join(' ');
+$('#dust').innerHTML=Array.from({length:16},()=>`<i style="left:${Math.random()*100}%;width:${2+Math.random()*3}px;height:${2+Math.random()*3}px;animation-duration:${9+Math.random()*8}s;animation-delay:${Math.random()*8}s"></i>`).join('')
+$('#lets').onclick=()=>{if(bgm.paused)bgm.play().catch(()=>{});show('bake');step1()};
+function show(id){document.querySelectorAll('section').forEach(s=>s.classList.toggle('on',s.id===id))}
+function snd(f){try{const a=new Audio(f);a.volume=.7;a.play().catch(()=>{})}catch(e){}}
+const bgm=new Audio('song.mp3');bgm.loop=true;bgm.volume=.3;
+const stirA=new Audio('stir.mp3');stirA.loop=true;stirA.volume=.6;
+['pop.mp3','ding.mp3'].forEach(f=>new Audio(f).load());
+function fade(a,to,ms,done){const s=a.volume,t0=performance.now();(function f(t){const k=Math.min(1,(t-t0)/ms);a.volume=s+(to-s)*k;if(k<1)requestAnimationFrame(f);else if(done)done()})(t0)}
+/* fireworks */
+const cv=$('#fw'),cx=cv.getContext('2d');let W,H,fwOn=true,vidOn=true,P=[];
+function rs(){const d=Math.min(devicePixelRatio||1,2);W=cv.width=innerWidth*d;H=cv.height=innerHeight*d;cx.setTransform(d,0,0,d,0,0)}
+addEventListener('resize',rs);rs();
+function burst(x,y){if(P.length>(vidOn?160:900))return;const h=Math.random()*360,n=vidOn?30:45+Math.random()*30;for(let i=0;i<n;i++){const a=Math.PI*2*i/n,v=1.5+Math.random()*3.5;P.push({x,y,vx:Math.cos(a)*v,vy:Math.sin(a)*v,l:1,c:`hsl(${h},100%,60%)`})}}
+let last=0,cleared=false;
+function loop(t){
+ if(vidOn){
+  if(!P.length){if(!cleared){cx.clearRect(0,0,innerWidth,innerHeight);cleared=true}requestAnimationFrame(loop);return}
+  cleared=false;cx.clearRect(0,0,innerWidth,innerHeight)
+ }else{cx.globalAlpha=1;cx.fillStyle='rgba(11,6,24,.22)';cx.fillRect(0,0,innerWidth,innerHeight)}
+ if(fwOn&&!vidOn&&t-last>650){last=t;burst(innerWidth*(.1+Math.random()*.8),innerHeight*(.1+Math.random()*.5))}
+ P=P.filter(p=>p.l>0);for(const p of P){p.x+=p.vx;p.y+=p.vy;p.vx*=.98;p.vy=p.vy*.98+.04;p.l-=.011;cx.globalAlpha=p.l;cx.fillStyle=p.c;cx.fillRect(p.x,p.y,3,3)}
+ cx.globalAlpha=1;requestAnimationFrame(loop)}
+requestAnimationFrame(loop);
+addEventListener('pointerdown',e=>{if(fwOn&&!e.target.closest('.k,.card,.scene'))burst(e.clientX,e.clientY)});
+/* countdown */
+let opened=false,pre=false,first=true;
+function prime(){if(pre)return;pre=true;const v=$('#bgv');v.style.display='block';v.play().catch(()=>{})}
+function warm(){prime()}
+function tick(){
+ const d=BIRTHDAY-new Date();
+ if(d<300000)warm();
+ if(d<8000)prime();
+ const live=d<=0||location.hash==='#preview';
+ if(live){
+  if(!opened){opened=true;vidOn=true;prime();
+   const go=()=>{$('#bgv').style.opacity=1;show('hb')};
+   first?go():setTimeout(go,400)}
+  first=false;return}
+ if(first){show('lock');first=false}
+ const s=Math.floor(d/1000),v=[['Days',Math.floor(s/86400)],['Hours',Math.floor(s%86400/3600)],['Mins',Math.floor(s%3600/60)],['Secs',s%60]];
+ $('#cd').innerHTML=v.map(([l,n])=>`<div><b>${String(n).padStart(2,'0')}</b><span>${l}</span></div>`).join('')}
+setInterval(tick,500);tick();
+/* bake game */
+const bk=$('#stage'),bp=$('#bp');
+const ING=[['🌾','Flour'],['🥚','Eggs'],['🍬','Sugar'],['🧈','Butter'],['🥛','Milk'],['🍫','Cocoa (optional)']];
+function step1(){
+ $('#bh').textContent='Let\'s bake your cake';
+ bp.textContent='Step 1: Tap the ingredients to add them to the bowl';
+ bk.innerHTML=`<div class="ing">${ING.map((g,i)=>`<button data-i="${i}"><span>${g[0]}</span>${g[1]}</button>`).join('')}</div><div class="bwrap" id="bw"><div class="bowl"><div class="batter" id="bt"></div></div></div><button class="btn" id="nx" style="display:none">Mix it! →</button>`;
+ let n=0,added=0;
+ bk.querySelectorAll('.ing button').forEach(b=>b.onclick=()=>{
+  const i=+b.dataset.i;b.classList.add('used');added++;snd('pop.mp3');if(bgm.paused)bgm.play().catch(()=>{});
+  const d=document.createElement('span');d.className='drop';d.textContent=ING[i][0];$('#bw').appendChild(d);setTimeout(()=>d.remove(),700);
+  if(i===5){bk.style.setProperty('--bt','#7a4a2b');bk.style.setProperty('--sp','#8a5a36')}else n++;
+  $('#bt').style.setProperty('--lv',Math.min(75,added*14)+'%');
+  if(n>=5)$('#nx').style.display='inline-block'});
+ $('#nx').onclick=step2}
+function step2(){
+ bp.textContent='Step 2: Stir the batter! Move around the bowl (or keep tapping)';
+ bk.innerHTML=`<div class="bar"><i id="pb"></i></div><div class="bwrap"><div class="bowl" id="bowl"><div class="batter" style="--lv:75%"></div><div class="spoon" id="sp">🥄</div></div></div>`;
+ let p=0,go=false,st;
+ const stir=()=>{if(stirA.paused)stirA.play().catch(()=>{});clearTimeout(st);st=setTimeout(()=>stirA.pause(),250)};
+ const add=a=>{if(go)return;stir();p=Math.min(100,p+a);$('#pb').style.width=p+'%';$('#sp').style.transform=`translate(-50%,-50%) rotate(${p*9}deg)`;if(p>=100){go=true;clearTimeout(st);stirA.pause();setTimeout(step3,500)}};
+ $('#bowl').addEventListener('pointermove',()=>add(1.2));
+ $('#bowl').addEventListener('click',()=>add(6))}
+function step3(){
+ bp.textContent='Step 3: Press Bake, then take it out while the marker is in the green zone!';
+ bk.innerHTML=`<div style="font-size:4.5rem" id="ov">🍰</div><div class="bar"><div class="zone"></div><i id="mk" class="mk"></i></div><p id="bm"></p><button class="btn" id="bb">Bake 🔥</button>`;
+ let t=null,v=0;const bb=$('#bb');
+ function stop(){clearInterval(t);t=null;$('#ov').textContent='🍰';bb.textContent='Bake 🔥';
+  if(v<50)$('#bm').textContent='Still gooey inside! Try again 😅';
+  else if(v>80)$('#bm').textContent='Oops, a bit burnt 😬 Try again!';
+  else{$('#bm').textContent='Perfectly golden! 🤩';snd('ding.mp3');bb.style.display='none';setTimeout(step4,1300)}}
+ bb.onclick=()=>{if(!t){bb.textContent='Take it out! 🧤';$('#ov').textContent='🔥';$('#bm').textContent='';v=0;$('#mk').style.left='0';t=setInterval(()=>{v++;$('#mk').style.left=Math.min(v,100)+'%';if(v>=100)stop()},60)}else stop()}}
+function step4(){
+ $('#bh').textContent='Decorate your cake';
+ bp.textContent='Pick a frosting, Add toppings,Tap the cake to place them';
+ const FR=[['#ff9ccf','Pink'],['#fff6ea','Vanilla'],['#6b3b22','Chocolate'],['#7ec8ff','Blue'],['#c9a6ff','Lilac']];
+ const TP=['🍓','🍒','🌸','⭐','✨','🕯️'];
+ const lum=h=>{const n=parseInt(h.slice(1),16);return .299*(n>>16)+.587*(n>>8&255)+.114*(n&255)};
+ let tool='🍓',fin=false,blown=false;
+ bk.innerHTML=`<input class="nameBox" id="nm" maxlength="16" placeholder="Write a name…"><div class="pal" id="fp">${FR.map(f=>`<button data-c="${f[0]}"><span style="width:28px;height:28px;border-radius:50%;margin:0 auto 4px;background:${f[0]}"></span>${f[1]}</button>`).join('')}</div><div class="pal" id="tp">${TP.map(t=>`<button data-t="${t}"><span>${t}</span></button>`).join('')}</div><div class="bcake" id="bc"><div class="bplate"></div><div class="bl a"></div><div class="frost m"></div><div class="bl b"></div><div class="frost t"></div><div class="wr" id="wr"></div></div><button class="btn" id="dn">Done decorating ✓</button>`;
+ const bc=$('#bc'),wr=$('#wr'),nm=$('#nm');
+ const put=()=>{wr.textContent=nm.value;wr.style.fontSize=(nm.value.length>11?18:26)+'px'};
+ nm.value=NAME;put();nm.oninput=put;
+ $('#tp').querySelector('[data-t="🍓"]').classList.add('sel');
+ $('#fp').onclick=e=>{const b=e.target.closest('button');if(!b)return;const c=b.dataset.c;bk.style.setProperty('--fr',c);bk.style.setProperty('--wc',lum(c)>150?'#7a1f4d':'#fff')};
+ $('#tp').onclick=e=>{const b=e.target.closest('button');if(!b)return;tool=b.dataset.t;$('#tp').querySelectorAll('button').forEach(x=>x.classList.toggle('sel',x===b))};
+ function candle(x,y){const c=document.createElement('div');c.className='bc';c.style.left=x+'px';c.style.top=(y-34)+'px';c.innerHTML='<div class="flame"></div>';bc.appendChild(c)}
+ bc.onclick=e=>{
+  if(fin){if(blown)return;blown=true;bc.classList.add('out');snd('blow.mp3');$('#bh').textContent='Your cake is ready';bp.textContent='MashaAllah,Ameen Hope your wish comes true 💫';
+   for(let i=0;i<8;i++)setTimeout(()=>burst(innerWidth*Math.random(),innerHeight*.5*Math.random()+30),i*150);
+   const g=document.createElement('button');g.className='btn';g.textContent='Open your next surprise →';g.onclick=()=>{fade(bgm,0,1500,()=>bgm.pause());show('game')};setTimeout(()=>bk.appendChild(g),900);return}
+  const r=bc.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top;
+  if(tool==='🕯️')candle(x,y);
+  else{const s=document.createElement('span');s.className='tp';s.textContent=tool;s.style.left=x+'px';s.style.top=y+'px';bc.appendChild(s)}};
+ $('#dn').onclick=()=>{fin=true;if(!bc.querySelector('.bc'))[100,140,180].forEach(x=>candle(x,48));
+  nm.remove();$('#fp').remove();$('#tp').remove();$('#dn').remove();
+  $('#bh').textContent='Make a wish';bp.textContent='Close your eyes, then tap the cake to blow out the candles!'}}
+/* wordle */
+const grid=$('#grid'),kb=$('#kb'),msg=$('#msg');
+const W5=WORD.toLowerCase(),L=W5.length,TRIES=6;
+let cur='',row=0,done=false;
+for(let r=0;r<TRIES;r++){const d=document.createElement('div');d.className='row';d.innerHTML='<div class="c"></div>'.repeat(L);grid.appendChild(d)}
+['qwertyuiop','asdfghjkl','⏎zxcvbnm⌫'].forEach(r=>{const d=document.createElement('div');d.className='kr';[...r].forEach(ch=>{const b=document.createElement('button');b.className='k';b.textContent=ch;b.dataset.k=ch;b.onclick=()=>key(ch);d.appendChild(b)});kb.appendChild(d)});
+addEventListener('keydown',e=>{if(!$('#game').classList.contains('on'))return;if(e.key==='Enter')key('⏎');else if(e.key==='Backspace')key('⌫');else if(/^[a-z]$/i.test(e.key))key(e.key.toLowerCase())});
+function paint(){const cs=grid.children[row].children;for(let i=0;i<L;i++){cs[i].textContent=cur[i]||'';cs[i].classList.toggle('f',!!cur[i])}}
+function key(k){if(done)return;msg.textContent='';
+ if(k==='⌫'){cur=cur.slice(0,-1);paint()}
+ else if(k==='⏎'){if(cur.length<L){msg.textContent='Need '+L+' letters';grid.children[row].classList.add('shake');setTimeout(()=>grid.children[row].classList.remove('shake'),400);return}submit()}
+ else if(cur.length<L){cur+=k;paint()}}
+function submit(){const res=Array(L).fill('x'),left=[...W5];
+ for(let i=0;i<L;i++)if(cur[i]===W5[i]){res[i]='g';left[i]=null}
+ for(let i=0;i<L;i++)if(res[i]==='x'){const j=left.indexOf(cur[i]);if(j>-1){res[i]='y';left[j]=null}}
+ const cs=grid.children[row].children;
+ res.forEach((s,i)=>{cs[i].classList.add(s);const b=kb.querySelector(`[data-k="${cur[i]}"]`);if(!b.classList.contains('g')&&!(b.classList.contains('y')&&s!=='g')){b.classList.remove('y','x');b.classList.add(s)}});
+ if(cur===W5){done=true;msg.textContent='Unlocked! 🎊';for(let i=0;i<8;i++)setTimeout(()=>burst(innerWidth*Math.random(),innerHeight*.5*Math.random()+30),i*150);setTimeout(()=>show('open'),2200);return}
+ row++;cur='';if(row===TRIES){msg.textContent='The word was '+W5.toUpperCase()+'. Reloading…';done=true;setTimeout(()=>location.reload(),3500)}}
+/* open when */
+const OPEN = [
+  {
+    title: "When you're happy and grateful",
+    emoji: "🌸",
+    arabic: "لَئِن شَكَرْتُمْ لَأَزِيدَنَّكُمْ",
+    translation: "If you are grateful, I will surely increase you in favour.",
+    reference: "Surah Ibrahim 14:7",
+    link: "https://quran.com/14/7",
+    note: "On the days when everything feels beautiful, pause and appreciate it. Don't forget to thank Allah for the little things, the people around you, and the blessings you sometimes overlook. You deserve to enjoy these moments."
+  },
+  {
+    title: "When your heart feels heavy",
+    emoji: "🤍",
+    arabic: "أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ",
+    translation: "Surely in the remembrance of Allah do hearts find comfort.",
+    reference: "Surah Ar-Ra'd 13:28",
+    link: "https://quran.com/13/28",
+    note: "Sometimes you don't need all the answers. Sometimes you just need a quiet moment with Allah. Make dua, take your time, and let your heart find its way back to peace."
+  },
+  {
+    title: "When you feel alone",
+    emoji: "🌙",
+    arabic: "وَهُوَ مَعَكُمْ أَيْنَ مَا كُنْتُمْ",
+    translation: "And He is with you wherever you are.",
+    reference: "Surah Al-Hadid 57:4",
+    link: "https://quran.com/57/4",
+    note: "Even when nobody understands what you're going through, Allah knows. You are never truly alone. And remember, you have people who care about you too. Never be afraid to reach out."
+  },
+  {
+    title: "When life gets difficult",
+    emoji: "🌤️",
+    arabic: "فَإِنَّ مَعَ الْعُسْرِ يُسْرًا ۝ إِنَّ مَعَ الْعُسْرِ يُسْرًا",
+    translation: "For indeed, with hardship comes ease. Indeed, with hardship comes ease.",
+    reference: "Surah Ash-Sharh 94:5–6",
+    link: "https://quran.com/94/5-6",
+    note: "This difficult chapter isn't your whole story. Keep going, one day at a time. Don't let a hard season make you forget all the beautiful things still waiting for you."
+  },
+  {
+    title: "When you maked a mistake",
+    emoji: "🕊️",
+    arabic: "لَا تَقْنَطُوا مِنْ رَحْمَةِ اللَّهِ",
+    translation: "Do not despair of the mercy of Allah.",
+    reference: "Surah Az-Zumar 39:53",
+    link: "https://quran.com/39/53",
+    note: "You are human. You will make mistakes, and you will have days you wish you could redo. But never let guilt convince you that you cannot return to Allah. His mercy is greater than your mistakes."
+  },
+  {
+    title: "When you need patience",
+    emoji: "🌷",
+    arabic: "إِنَّ اللَّهَ مَعَ الصَّابِرِينَ",
+    translation: "Indeed, Allah is with the patient.",
+    reference: "Surah Al-Baqarah 2:153",
+    link: "https://quran.com/2/153",
+    note: "I know you have big dreams and sometimes you want everything to happen right now. But trust your timing. Keep putting in the effort, keep making dua, and don't give up on yourself."
+  },
+  {
+    title: "When you have a big decision",
+    emoji: "✨",
+    arabic: "فَإِذَا عَزَمْتَ فَتَوَكَّلْ عَلَى اللَّهِ",
+    translation: "Once you have made a decision, put your trust in Allah.",
+    reference: "Surah Ali 'Imran 3:159",
+    link: "https://quran.com/3/159",
+    note: "Think carefully, make your dua, do your best, and trust Allah with what comes next. You don't need to know exactly how everything will work out to take your next step."
+  },
+  {
+    title: "When the future feels uncertain",
+    emoji: "🌅",
+    arabic: "مَا وَدَّعَكَ رَبُّكَ وَمَا قَلَىٰ",
+    translation: "Your Lord has not abandoned you, nor has He become displeased.",
+    reference: "Surah Ad-Duha 93:3",
+    link: "https://quran.com/93/3",
+    note: "Just because you cannot see what is coming doesn't mean something beautiful isn't ahead. Don't compare your journey to anyone else's. Your path is your own. Keep believing, Nida."
+  },
+  {
+    title: "When you feel overwhelmed",
+    emoji: "🌧️",
+    arabic: "لَا يُكَلِّفُ اللَّهُ نَفْسًا إِلَّا وُسْعَهَا",
+    translation: "Allah does not burden a soul beyond that it can bear.",
+    reference: "Surah Al-Baqarah 2:286",
+    link: "https://quran.com/2/286",
+    note: "Nida, take a breath. You don't have to figure everything out today. You've already made it through so many difficult days. Be patient with yourself. You are stronger than you sometimes realise, and you don't have to carry everything at once."
+  },
+  {
+    title: "When nobody understands",
+    emoji: "💗",
+    arabic: "وَهُوَ عَلِيمٌ بِذَاتِ الصُّدُورِ",
+    translation: "And He is Knowing of what is within the hearts.",
+    reference: "Surah Al-Hadid 57:6",
+    link: "https://quran.com/57/6",
+    note: "You don't always have to explain yourself to everyone. Allah knows the intentions behind your actions, the feelings you cannot put into words, and the things you keep quietly inside. Let that bring you comfort."
+  },
+  {
+    title: "When you're stressed",
+    emoji: "🍃",
+    arabic: "وَمَن يَتَوَكَّلْ عَلَى اللَّهِ فَهُوَ حَسْبُهُ",
+    translation: "And whoever relies upon Allah, then He is sufficient for him.",
+    reference: "Surah At-Talaq 65:3",
+    link: "https://quran.com/65/3",
+    note: "Nida, put it all down for a moment. Breathe. Stress makes everything feel bigger than it is. Do what you can today, make dua for the rest, and trust that Allah is taking care of what is out of your hands. You are doing better than you think."
+  },
+  {
+    title: "When you're not feeling well",
+    emoji: "🌿",
+    arabic: "وَإِذَا مَرِضْتُ فَهُوَ يَشْفِينِ",
+    translation: "And when I am ill, it is He who cures me.",
+    reference: "Surah Ash-Shu'ara 26:80",
+    link: "https://quran.com/26/80",
+    note: "Rest, drink something warm, and be gentle with yourself. Make dua and don't forget how stronge Nida shah is."
+  }
+];
+
+const envs = document.getElementById("envs");
+const modal = document.getElementById("modal");
+const mbox = document.getElementById("mbox");
+
+function closeM() {
+  modal.classList.remove("show");
+  document.querySelectorAll(".env.op").forEach(e => e.classList.remove("op"));
+}
+
+function fill(item) {
+  mbox.innerHTML = `
+    <div class="mscroll">
+      <div class="me">${item.emoji}</div>
+      <h2>${item.title}</h2>
+      <div class="ar">${item.arabic}</div>
+      <p class="mv">“${item.translation}”</p>
+      <p class="mr">${item.reference}</p>
+      <a class="quran-link" href="${item.link}" target="_blank" rel="noopener noreferrer">Read the full verse on Quran.com ↗</a>
+      <div class="mn"><strong>A little note for you</strong><p>${item.note}</p></div>
+      <button class="close-modal" id="closeModal">Close</button>
+    </div>`;
+  document.getElementById("closeModal").onclick = closeM;
+}
+
+OPEN.forEach(item => {
+  const b = document.createElement("button");
+  b.className = "env";
+  const t = item.title.replace(/^When /, "");
+  b.innerHTML = `
+    <div class="flap"></div>
+    <div class="pk"></div>
+    <div class="lbl"><small>Open when</small><b>${t}</b></div>
+    <div class="seal">${item.emoji}</div>`;
+  b.onclick = () => {
+    b.classList.add("op");
+    setTimeout(() => { fill(item); modal.classList.add("show"); }, 650);
+  };
+  envs.appendChild(b);
+});
+
+modal.addEventListener("click", e => { if (e.target === modal) closeM(); });
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeM(); });
+/* dev jump */
+function jump(){const j=location.hash.slice(1);if(['hb','bake','game','open'].includes(j)){opened=true;show(j);if(j==='bake')step1()}}
+addEventListener('hashchange',jump);jump();
+</script></body>
